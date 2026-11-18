@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>轴承振动诊断｜面试深挖手册</title>
+<style>
+:root{color-scheme:light;--paper:#f4f6f2;--card:#fff;--ink:#192c2a;--soft:#48615d;--line:#d5e0d9;--accent:#075c52;--mint:#e1f2e9;--amber:#754200;--sand:#fff1d9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #288b7e;outline-offset:3px}
+header{background:#123431;color:#f5fff9;padding:55px max(24px,calc((100vw - 1160px)/2)) 43px;border-bottom:5px solid #71b8a5}
+header p{max-width:730px;color:#d9eee4;margin:12px 0}.kicker{font-size:13px;font-weight:750;letter-spacing:.16em;color:#a7e0ca}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.16;margin:12px 0 18px}h2{font-size:clamp(21px,3.5vw,30px);line-height:1.33;margin:0 0 16px}h3{font-size:18px;line-height:1.5;margin:22px 0 8px}p,ul,ol{margin:10px 0}ul,ol{padding-left:1.45em}li+li{margin-top:4px}
+.wrap{max-width:1208px;margin:auto;padding:24px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:25px;align-items:start}
+nav{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:14px}
+nav strong{display:block;padding:2px 7px 8px}nav a{display:block;padding:4px 7px;text-decoration:none;border-radius:5px}nav a:hover{background:var(--mint)}nav .drill-link{margin:8px 0;background:var(--mint);font-weight:750}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:clamp(17px,3vw,32px);margin-bottom:18px;scroll-margin-top:18px}
+.num{font-variant-numeric:tabular-nums;color:var(--accent);display:inline-block;margin-right:.45em}.tag{display:inline-block;border-radius:4px;padding:1px 7px;font-size:12px;font-weight:750;white-space:nowrap;background:var(--mint);color:var(--accent);margin-right:7px;vertical-align:1px}
+.tag.a{background:#e8eef7;color:#24436b}.tag.ext{background:var(--sand);color:var(--amber)}header .tag{margin-top:8px}
+.callout{padding:11px 15px;background:var(--mint);border-left:3px solid #328b78;margin:14px 0}.callout.caution{background:var(--sand);border-color:#bc761e}
+.src{font-size:13px;color:var(--soft);overflow-wrap:anywhere;margin-top:17px}
+code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}code{background:#edf2ef;border-radius:4px;padding:1px 4px;font-size:.9em;overflow-wrap:anywhere}
+pre{padding:13px 15px;background:#ebf2ee;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;font-size:14px}
+.pipeline{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0}.pipeline span{border:1px solid #b9d6ca;border-radius:6px;padding:5px 9px;background:#eff8f4;font-weight:650}.pipeline b{color:var(--accent)}
+.table-wrap{overflow-x:auto;margin:14px 0}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:8px 10px}th{background:#edf5ef}
+details.q{border-top:1px solid var(--line);margin-top:12px;padding-top:8px}summary{cursor:pointer;font-weight:720;padding:5px 0}summary:hover{color:var(--accent)}.answer{padding:1px 0 3px 17px}.question-type{font-size:12px;color:var(--soft);margin-right:7px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:12px 0}.controls label{display:grid;gap:3px;font-size:14px;color:var(--soft)}
+button,select{font:inherit;border:1px solid #9cb5aa;border-radius:7px;background:white;color:var(--ink);min-height:42px;padding:6px 12px}button{cursor:pointer;font-weight:680}button.primary{background:var(--accent);color:white;border-color:var(--accent)}button:disabled{opacity:.55;cursor:default}
+#quiz-card{padding:14px 17px;background:#eff7f3;border:1px solid #cce0d6;border-radius:9px;min-height:100px}#quiz-meta{font-size:13px;color:var(--soft)}#quiz-question{margin-top:5px;font-size:19px}#quiz-answer{border-top:1px solid #c6dbd1;margin-top:10px;padding-top:4px}
+footer{color:var(--soft);font-size:13px;padding:0 0 15px}.checklist{list-style:none;padding-left:0}.checklist label{cursor:pointer}.checklist input{accent-color:var(--accent);margin-right:8px}
+@media(max-width:760px){header{padding:30px 18px 25px}.wrap{display:block;padding:13px}nav{position:static;max-height:none;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr;gap:2px}nav strong,nav .drill-link{grid-column:1/-1}th,td{padding:6px}section{scroll-margin-top:5px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:11pt}.wrap{display:block;padding:0}header{padding:15px 0;background:white;color:black;border-bottom:2px solid black}header p,.kicker{color:black}nav,#quiz,.no-print{display:none}section{border:none;padding:8px 0;margin:0}h2,h3,summary{break-after:avoid}details.q:not([open])>.answer{display:block!important;content-visibility:visible!important}pre,.table-wrap{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+<div class="kicker">项目复习手册 / EMBEDDED · DSP · EDGE AI</div>
+<h1>轴承振动诊断<br>面试深挖知识点与灵活提问</h1>
+<p>围绕树莓派上的三轴振动采集、时频图融合、ONNX 端侧分类和工业告警。每章可以从源码事实讲到原理，再用一道追问检查自己能否解释设计取舍。</p>
+<span class="tag">S 级 · 主线必背</span><span class="tag a">A 级 · 专业课追问</span><span class="tag ext">拓展 · 改造与实验</span>
+</header>
+<div class="wrap">
+<nav aria-label="章节导航">
+<strong>快速导航</strong>
+<a class="drill-link" href="#quiz">进入随机模拟面试 ↓</a>
+<a href="#facts">00　证据边界与复习顺序</a>
+<a href="#system">01　项目介绍与五层框架</a>
+<a href="#adc">02　AD4134 与采样时序</a>
+<a href="#signal">03　窗口、频率与故障机理</a>
+<a href="#cwt">04　CWT 与 FFTW 实现</a>
+<a href="#fusion">05　CCWF 三轴融合</a>
+<a href="#tensor">06　输入张量与部署对齐</a>
+<a href="#quant">07　量化模型与 XNNPACK</a>
+<a href="#threads">08　队列、并发与退出</a>
+<a href="#alarm">09　阈值与告警状态</a>
+<a href="#io">10　电流环、RS485 与日志</a>
+<a href="#debug">11　回放、排障与部署</a>
+<a href="#eval">12　验证、指标与性能</a>
+<a href="#claims">13　高危表述与个人贡献</a>
+<a href="#checklist">15　面试前自检清单</a>
+</nav>
+<main>
+<section id="facts">
+<h2><span class="num">00</span>先划清能讲到哪一步</h2>
+<div class="table-wrap"><table><thead><tr><th>证据</th><th>可以据此回答</th></tr></thead><tbody>
+<tr><td><span class="tag">源码可追</span></td><td>AD4134 采集与 CSV 回放、三轴时频图处理、ONNX Runtime 推理、阈值和延迟、输出与日志。以实际调用点判断功能是否进入主链。</td></tr>
+<tr><td><span class="tag a">模型可验</span></td><td>随附轴承 ONNX 图的输入输出形状、类型、Q/DQ 节点、Softmax 和量化参数。类别顺序由 C++ 代码核对。</td></tr>
+<tr><td><span class="tag ext">待验证或拓展</span></td><td>实测采样率、丢样率、P95 延迟、分类准确率、校准集与训练细节、个人分工。用自己的记录补充。数据划分、迟滞与背压等方案按“我会怎样改”来答。</td></tr>
+</tbody></table></div>
+<p><strong>先练主线</strong>　按“采集 → CWT → 融合 → 张量 → 分类 → 告警”讲 90 秒。再选几道算题，最后用压力题练习区分代码事实、推断和验证方案。</p>
+</section>
+
+<section id="system" data-topic="系统工程">
+<h2><span class="num">01</span>项目介绍与五层框架</h2>
+<p>项目面向旋转设备的轴承状态诊断。分类目标有四类：正常、滚动体故障、保持架故障、外圈故障。系统在树莓派端完成采集、图像化特征处理、推理与现场输出。</p>
+<div class="pipeline" aria-label="轴承振动数据流"><span>AD4134 或 CSV</span><b>→</b><span>三轴样本块</span><b>→</b><span>CWT 与 CCWF</span><b>→</b><span>ONNX 四分类</span><b>→</b><span>告警、显示与日志</span></div>
+<div class="callout"><strong>90 秒项目介绍</strong><p>系统每次将 X、Y、Z 三轴信号按轴打包。处理线程对每轴做连续小波变换，把时频幅度转换为灰度图，再按局部相关性融合。融合图以 1×1×224×224 的浮点张量输入 ONNX Runtime，模型给出四类分数。业务层按置信度阈值与告警延迟规则决定是否驱动继电器等现场输出，同时更新 OLED 和日志。采集与日志使用队列和处理线程解耦，CSV 回放用于复现预处理与推理问题。</p></div>
+<details class="q" data-kind="常规"><summary><span class="tag">S</span>为什么拆成五个框架？分别承担什么？</summary><div class="answer"><p><strong>答。</strong>采集框架统一真实 ADC 与模拟输入，处理框架生成融合图，AI 框架负责张量和会话，显示日志框架持久化与查询，扩展框架负责菜单和现场接口。<code>BearingVibrationProject</code> 持有模块、启动工作线程并做告警决策。框架描述的是职责，工作线程描述的是调度，两者可独立调整。</p><p><strong>变式。</strong>“换传感器或模型会影响哪里？”传感器可集中改采集层，但量程、安装方向和采样率改变会传导到模型分布。换模型先核对张量形状、归一化、类序和分数语义。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>这是故障诊断、故障预测，还是振动标准评估？</summary><div class="answer"><p><strong>答。</strong>当前主链实现窗口级故障分类与规则告警。维护计划、历史分析等接口不能据此声称完成 RUL 预测。预测剩余寿命需要带退化过程或失效时间的长期数据。做标准评估还需要明确量纲、频带、测点、机器类别及适用规范。当前网络输入是归一化的图像。</p></div></details>
+<p class="src">源码定位　<a href="src/main.cpp">main.cpp · 382–456</a>　<a href="src/projects/BearingVibrationProject.cpp">BearingVibrationProject.cpp · 208–304、405–650、684–705</a></p>
+</section>
+
+<section id="adc" data-topic="采集与信号">
+<h2><span class="num">02</span>AD4134 与采样时序</h2>
+<p><strong>代码路径。</strong>SPI 用于寄存器写入与回读校验。数据读取等 ODR 低后再等其变高，然后用 GPIO 翻转 DCLK，在每个时钟周期读取 DOUT0、DOUT1、DOUT2 各一位。24 次循环后分别符号扩展，按 <code>raw × 4.096 / 2²³</code> 得到代码使用的电压值。每批 5000 帧，每帧三通道，落入连续的 <code>[X₀…X₄₉₉₉ | Y₀…Y₄₉₉₉ | Z₀…Z₄₉₉₉]</code>。</p>
+<details class="q" data-kind="常规"><summary><span class="tag">S</span>为什么有 SPI，又有 ODR、DCLK 和 DOUT？</summary><div class="answer"><p><strong>答。</strong>SPI 是配置通路，ODR/DCLK/DOUT 是当前代码的采样数据通路。ODR 的边沿用于同步帧，DCLK 推进位读出，三根 DOUT 并行承载三个轴。三轴并行读一帧要 24 个 DCLK 周期。需要对照芯片数据接口模式及实测波形确认有效采样边沿和时序裕量。</p></div></details>
+<details class="q" data-kind="计算"><summary><span class="tag">S</span>24 位的 <code>0xFFFFFF</code> 等于多少？50 k 帧/秒时位时钟下限是多少？</summary><div class="answer"><p><strong>答。</strong><code>0xFFFFFF</code> 符号扩展成 <code>0xFFFFFFFF</code>，值为 −1。<code>0x800000</code> 为 −2²³。代码对应约 0.488 µV/码的换算步长，这个步长不代表系统噪声或实际有效位数。按三路并行、每帧 24 位计算，理想平均位时钟下限为 <strong>1.2 MHz</strong>，还要留帧间和 GPIO 操作开销。三路合计原始位流为 3.6 Mbit/s。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>你怎么证明在 Linux 用户态没有丢样？拔掉 ADC 后还能退出吗？</summary><div class="answer"><p><strong>答。</strong>50 kHz 是代码标称值，<code>set_sample_rate()</code> 在设备层也未实际调硬件。用逻辑分析仪同时看 ODR、DCLK 与 DOUT，核对 ODR 周期、每帧 24 个脉冲及帧漏读，在 CPU 和 I/O 负载下复测。当前 ODR 忙等没有超时或停止检查，信号卡住时采集线程可能卡在读帧，进而阻塞 <code>join()</code>。</p><p><strong>拓展。</strong>先加超时、停止检查和故障状态。若实测无法在每个窗口跟上时序，再评估硬件采集外设或 MCU/FPGA 聚合并带序号传输，分别验证有效采样率、漏帧与停止时延。</p></div></details>
+<details class="q" data-kind="专业课"><summary><span class="tag a">A</span>24 bit 就有 24 bit 有效精度吗？如何换算为 g？</summary><div class="answer"><p><strong>答。</strong>标称位宽只给数字码的粒度。有效精度受噪声、参考源、增益、带宽和传感器限制。要从电压求加速度，需要传感器灵敏度和偏置，并考虑模拟前端的增益。当前源码追到的是 ADC 码转电压，拿已知激励做标定才能得到可溯源的 g 值。</p></div></details>
+<p class="src">源码定位　<a href="src/frameworks/DataAcquisitionFramework.cpp">DataAcquisitionFramework.cpp · 226–262、763–831、961–1092</a>　<a href="include/common/ProjectDefines.hpp">ProjectDefines.hpp · 338</a>　<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/ad4134.pdf">ADI 数据手册</a></p>
+</section>
+
+<section id="signal" data-topic="采集与信号">
+<h2><span class="num">03</span>窗口、频率与故障机理</h2>
+<pre>按标称 fs = 50,000 Hz，N = 5,000
+观测窗 N/fs = 100 ms     奈奎斯特频率 fs/2 = 25 kHz
+若对完整窗口做 N 点 DFT，频率栅格 fs/N = 10 Hz
+每块三轴 float 原始载荷 = 3 × 5000 × 4 B = 60,000 B（约 58.6 KiB）</pre>
+<details class="q" data-kind="计算"><summary><span class="tag">S</span>采样率 50 kHz，为什么界面没有每秒输出 5 万次？</summary><div class="answer"><p><strong>答。</strong>采样率是每轴采样点/秒。模型按 5000 帧一块输出，采集线程每个成功块后还休眠 500 ms。假设硬件连续以标称速率读完一个块需要约 100 ms，块起点间隔粗略约 600 ms 加其他开销。模拟回放无需等真实采样，节奏主要受休眠与开销影响。100 ms 是信号观测窗，输出节奏还受队列、预处理和推理影响。</p><p><strong>变式。</strong>“能说无间隙监测吗？”按当前批次休眠的实现，应测相邻块间未覆盖时间，并评估短暂事件是否在间隙丢失。</p></div></details>
+<details class="q" data-kind="专业课"><summary><span class="tag a">A</span>外圈、滚动体、保持架故障为什么在振动里可区分？</summary><div class="answer"><p><strong>答。</strong>缺陷经过受力接触区可产生重复冲击并激发结构共振，重复频率随转速和轴承几何变化。理论上可用 BPFO、BSF、FTF 分别讨论外圈、滚动体自转、保持架的特征频率，再结合包络谱与谐波检验。当前分类入口用时频图。特征频率是解释和复核的工具。</p><p><strong>变式。</strong>“换转速后能识别吗？”固定像素里的频率纹理可能迁移。用留出转速验证，若可读到转速，考虑阶次分析或按转角重采样，比较跨工况召回率。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag a">A</span>把 100 ms 窗口补零到 1 秒，是否就能分开相差 1 Hz 的成分？</summary><div class="answer"><p><strong>答。</strong>补零让频谱采样栅格更密。实际可分辨性主要受观测时长、窗形与信噪比约束。真要分开很近的频率，要增加有效观测时间或使用有明确假设的估计法。这里的 10 Hz 是 DFT 栅格，CWT 的分辨率由小波和尺度决定。</p></div></details>
+<p class="src">源码定位　<a href="src/projects/BearingVibrationProject.cpp">BearingVibrationProject.cpp · 367–393</a>　<a href="include/common/ProjectDefines.hpp">ProjectDefines.hpp · 338</a></p>
+</section>
+
+<section id="cwt" data-topic="时频与融合">
+<h2><span class="num">04</span>CWT 与 FFTW 实现</h2>
+<p><strong>为什么要做时频图。</strong>全窗 FFT 给出窗口整体频谱。轴承的冲击可能只在某个时刻出现，CWT 能保留冲击发生时间及其频带结构。STFT 也可得到时频图，使用固定窗长。小波随尺度伸缩，短小波更适合定位高频瞬态，长小波在低频提供更细的频率刻画。</p>
+<div class="pipeline" aria-label="单轴预处理"><span>预加重</span><b>→</b><span>128 尺度 Morlet</span><b>→</b><span>FFT 卷积取系数</span><b>→</b><span>log1p</span><b>→</b><span>缩放、归一化、CLAHE</span></div>
+<p>源码用 <code>y[n] = x[n] − 0.97·x[n−1]</code> 预加重，首点沿用原值。尺度数 128、中心参数 1.0、带宽参数 1.5，按 <code>sᵢ = 2·f꜀·128/(128−i)</code> 生成尺度。每轴先计算 128×5000 系数，再经过 <code>log1p</code>、双线性缩放到 224×224、逐图 min-max 转为 8 位灰度、CLAHE。</p>
+<details class="q" data-kind="常规"><summary><span class="tag">S</span>项目调用 FFTW，为什么仍然叫 CWT？</summary><div class="answer"><p><strong>答。</strong>FFTW 是实现卷积的工具。源码离散化积分 Morlet，按尺度生成反序核，零填充后做 FFT，复数逐点相乘，再做 IFFT。通过差分、除以 FFT 长度、乘尺度因子和居中裁剪得到系数，最后取 <code>abs(Re(coef))</code>。生成的依然是随时间与尺度变化的图。</p><p><strong>追问。</strong>“是复数模值吗？”当前实现取实部绝对值。<code>abs(Re(z))</code> 与 <code>sqrt(Re²+Im²)</code> 会得到不同的图，换算法前需做 Python/C++ 对齐并验证模型效果。</p></div></details>
+<details class="q" data-kind="计算"><summary><span class="tag a">A</span>卷积为何补到至少 N+K−1？一轴系数图占多少内存？</summary><div class="answer"><p><strong>答。</strong>长度 N 与 K 的线性卷积长度为 N+K−1，频域相乘天然对应循环卷积。零填充到足够长度，避免结果首尾折叠。代码用 <code>next_fast_len</code> 选不小于该长度的 FFT 尺寸。同一轴、同一 FFT 长度可复用输入频谱。一轴系数矩阵 128×5000×4 B = <strong>2.56 MB</strong>，峰值还包含 FFT 缓冲、缓存和图像临时对象。</p></div></details>
+<details class="q" data-kind="专业课"><summary><span class="tag a">A</span>预加重、log1p 和 CLAHE 分别改变了什么？</summary><div class="answer"><p><strong>答。</strong>预加重相对抑制低频和直流，也可能放大高频噪声。<code>log1p</code> 压缩幅值动态范围，并能在零处求值。CLAHE 在局部提升对比度并限制直方图增强，也可能改变噪声纹理。由于逐窗 min-max 弱化绝对幅值信息，要做严重度评估可另保留带单位的 RMS、峰值等特征，并单独验证。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag a">A</span>如果采样率从 50 kHz 改成 25 kHz，输出还是 224×224，可以直接用吗？</summary><div class="answer"><p><strong>答。</strong>相同点数对应的观测时长翻倍，同一尺度的伪频率近似随采样率减半，原模型看到的纹理位置会变。<code>compute_cwt_image()</code> 的尺度计算未读取采样率元数据。需要先对齐有效频带、时间窗口和训练分布。若重采样，先确保抗混叠和目标频带仍可观测，再比对融合图与分类表现。</p></div></details>
+<p class="src">源码定位　<a href="src/frameworks/DataProcessingFramework.cpp">DataProcessingFramework.cpp · 482–519、549–895</a>　<a href="include/frameworks/DataProcessingFramework.hpp">DataProcessingFramework.hpp · 284–294</a></p>
+</section>
+
+<section id="fusion" data-topic="时频与融合">
+<h2><span class="num">05</span>CCWF 三轴融合</h2>
+<p>每轴的 CWT 图在融合前又做一次 CLAHE 与反锐化。CCWF 将三张图按 8×8 像素对应分块，计算每块三轴两两的零均值归一化相关性。每个轴取它与另外两轴的映射相关性均值作为权重，随后对同位置像素加权平均。整图归一化转 8 位后，再做融合后 CLAHE 与反锐化，得到单通道图。</p>
+<pre>ρᵢⱼ = Σ[(Aᵢ−μᵢ)(Aⱼ−μⱼ)] / √[Σ(Aᵢ−μᵢ)² · Σ(Aⱼ−μⱼ)²]
+wᵢ = mean over j≠i of (ρᵢⱼ+1)/2
+fused = (wₓ·X + wᵧ·Y + w𝓏·Z) / (wₓ+wᵧ+w𝓏)</pre>
+<details class="q" data-kind="计算"><summary><span class="tag">S</span>若 XY 相关系数为 1，XZ 和 YZ 都为 0，三轴各占多少？</summary><div class="answer"><p><strong>答。</strong>映射后三对分数为 1、0.5、0.5。未归一化权重为 0.75、0.75、0.5，合计 2，归一化后分别为 <strong>37.5%、37.5%、25%</strong>。常量块的分母接近零时，函数将相关系数置 0，映射值为 0.5。代码没有据此剔除常量轴。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>三轴融合一定比单轴好吗？如果故障主要出现在 Z 轴呢？</summary><div class="answer"><p><strong>答。</strong>相关性加权偏向跨轴一致的局部纹理。独立轴上的真实弱故障可能被压低，多轴共同噪声也可能被强化。将同一批留出设备和工况分别跑单轴、三轴均值、CCWF 与三通道输入，比较各类召回率、误报、推理与前处理成本。三通道方案需改输入契约并重新训练或适配。</p></div></details>
+<details class="q" data-kind="专业课"><summary><span class="tag a">A</span>NCC 与相关性强就代表有同一个故障吗？</summary><div class="answer"><p><strong>答。</strong>NCC 描述去掉局部均值后的线性纹理相似度。它可降低单纯亮度偏置对权重的影响，但无法判断同一纹理来自缺陷、传感器耦合还是环境振动。融合前要求三轴时间对齐且尺度映射一致。验证时可人工注入轴间时移、饱和和断线，观察结果是否稳定。</p></div></details>
+<p class="src">源码定位　<a href="src/frameworks/DataProcessingFramework.cpp">DataProcessingFramework.cpp · 87–243、274–397</a></p>
+</section>
+
+<section id="tensor" data-topic="模型与部署">
+<h2><span class="num">06</span>输入张量与部署对齐</h2>
+<p>推理取第一张图。三通道输入会转灰度，必要时 resize 到 224×224。像素转为 FP32 后按 <code>(pixel − 33.405) / 78.795</code> 标准化，源码中间没有先除以 255。随后按行展开为 NCHW <code>[1,1,224,224]</code>。模型输出 <code>[1,4]</code>，C++ 取 argmax 和最大分数，类序为 <code>denormal / deballfault / decagefault / deouterrace</code>。</p>
+<details class="q" data-kind="常规"><summary><span class="tag">S</span>为什么同样 224×224，Python 的模型结果和 C++ 还可能不同？</summary><div class="answer"><p><strong>答。</strong>形状只保证元素组织相容。预加重精度、Morlet 尺度、padding、中心裁剪、实部取绝对值还是复数模、插值、灰度量化、CLAHE、均值方差和类序都会影响结果。用同一 CSV 文件、类别和起始行做逐级对比。当前回放固定正常类和起始段，其他窗口需单独提取或扩展回放接口。比较三轴输入、CWT 矩阵、融合图、张量和四类分数，定位第一次差异。<code>test_cpp_img_fused.png</code> 和 <code>test_cpp_img_fused_bearing.txt</code> 可辅助定位。</p></div></details>
+<details class="q" data-kind="计算"><summary><span class="tag a">A</span>一个输入张量占多少内存？像素 0 和 255 各变成多少？</summary><div class="answer"><p><strong>答。</strong>50,176 个 float，共 200,704 B = 196 KiB。0 映射到约 −0.424，255 映射到约 2.812。这个范围有助于排查重复除以 255 等错误。实际峰值内存还包括 OpenCV 中间图、ORT 内部张量和模型权重。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag a">A</span>如果换成真正以 INT8 或 UINT8 为外部输入的模型，现有分支可靠吗？</summary><div class="answer"><p><strong>答。</strong>当前轴承模型实际走 float 分支。现有整数输入分支有两处要核对：像素还原与偏移是否等价于新模型的 scale/zero point，以及缓冲区生命周期。两个整数 <code>std::vector</code> 在各自条件分支结束时销毁，<code>CreateTensor</code> 包装的是调用方缓冲，后面的 <code>Run</code> 会引用失效数据。应让缓冲活到 <code>Run</code> 返回，并为每个模型校验类型、shape、元素数与量化参数。</p></div></details>
+<p class="src">源码定位　<a href="src/frameworks/AIModelFramework.cpp">AIModelFramework.cpp · 134–312、380–442、714–859</a>　<a href="https://onnxruntime.ai/docs/api/c/struct_ort_api.html">ONNX Runtime C API</a></p>
+</section>
+
+<section id="quant" data-topic="模型与部署">
+<h2><span class="num">07</span>量化模型与 XNNPACK</h2>
+<div class="callout"><strong>模型图可核对。</strong>轴承 ONNX 外部输入、输出均为 FP32。图中有 <code>QuantizeLinear</code> / <code>DequantizeLinear</code> 和 INT8 权重张量，尾部是 Softmax 后接 Q/DQ。输入量化节点的 scale 约为 0.0126858，zero point 为 33，末端输出 Q/DQ 的 scale 为 1/256、zero point 为 0。这些是图内量化参数。</div>
+<pre>量化    q = clamp(round(x/s) + z)
+反量化  x̂ = s × (q − z)</pre>
+<details class="q" data-kind="常规"><summary><span class="tag">S</span>为什么说模型量化了，C++ 却仍然输入 float？</summary><div class="answer"><p><strong>答。</strong>外部 I/O 类型和图内表示是两层契约。C++ 把标准化后的浮点数据交给会话，图内通过 Q/DQ 表达量化边界。支持量化融合的执行后端可以为对应子图选择整数内核。仅凭图里有 Q/DQ，无法知道每个节点实际上由哪个 EP 和内核执行。</p><p><strong>变式。</strong>PTQ 用已有权重与代表性数据确定量化参数，QAT 在训练中模拟量化误差。模型元数据支持曾经经过 ORT 的量化相关流程，仓库未提供校准样本选择、训练方法或精度前后对照。</p></div></details>
+<details class="q" data-kind="计算"><summary><span class="tag">S</span>为什么日志常见 0.996094？它代表准确率 99.61% 吗？</summary><div class="answer"><p><strong>答。</strong>由随附模型末端 Q/DQ 可推得，8 位无符号码最大 255，按 <code>scale=1/256, z=0</code> 得 <strong>255/256 = 0.99609375</strong>。这与日志值吻合，是单窗口得分可能达到的量化上限。准确率需要独立样本及真实标签，分数校准也需另测。四个分量分别量化后，和也可能偏离 1。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>启用 XNNPACK 就说明用了 NPU、一定更快吗？</summary><div class="answer"><p><strong>答。</strong>XNNPACK 是 CPU 执行提供器。代码尝试启用它，XNNPACK 线程数设为 4，ORT intra-op 设为 1 且关闭 spinning。注册抛出异常时把 ORT intra-op 设为 4 并继续创建会话。启用后算子仍可能落到默认 CPU EP。可用 ORT profiling 查看节点分配，并在板上用同一组输入比较 CPU EP 与 XNNPACK 的 P50/P95、吞吐和 CPU 占用。</p></div></details>
+<details class="q" data-kind="English"><summary><span class="tag a">A</span>How can a quantized model still take floating-point inputs?</summary><div class="answer"><p>The model exposes a float32 interface. Quantize and dequantize operators define internal quantization boundaries. The execution provider determines which subgraphs can run with quantized kernels. I would confirm the actual placement with ONNX Runtime profiling.</p></div></details>
+<p class="src">模型与源码　<a href="models/bearing_vibration/bearing_vibration_model.onnx">bearing_vibration_model.onnx</a>　<a href="src/frameworks/AIModelFramework.cpp">AIModelFramework.cpp · 546–603、714–859</a>　<a href="https://onnxruntime.ai/docs/execution-providers/Xnnpack-ExecutionProvider.html">ONNX Runtime XNNPACK 文档</a></p>
+</section>
+
+<section id="threads" data-topic="系统工程">
+<h2><span class="num">08</span>队列、并发与退出</h2>
+<pre>采集线程 → raw_queue_ → 处理线程（CWT + 推理 + 告警）→ result_queue_ → 日志线程
+                               ↓ MenuSnapshot
+                             OLED 菜单线程</pre>
+<p>项目对象启动三个业务线程，菜单还有自己的循环。<code>ConcurrentQueue</code> 用 mutex 保护 FIFO。<code>pop()</code> 以 <code>!empty || stop_</code> 为条件等待，等待时释放锁，唤醒后重新加锁复查。<code>push()</code> 通知一个消费者，<code>stop()</code> 唤醒所有等待者。菜单通过加锁复制快照，随后在锁外渲染。</p>
+<details class="q" data-kind="专业课"><summary><span class="tag">S</span>为什么条件变量要写谓词？<code>running_</code> 用 volatile 可以吗？</summary><div class="answer"><p><strong>答。</strong>谓词用于应对虚假唤醒和另一个消费者先取走数据。锁让队列的检查、取出和删除成为一个受保护的步骤。<code>running_</code> 是独立跨线程状态，可用 atomic 读写。<code>volatile</code> 不提供数据竞争保护，也不负责唤醒阻塞在条件变量上的线程。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>处理变慢，队列会怎样？把队列加大够吗？</summary><div class="answer"><p><strong>答。</strong>队列无容量上限，生产长期快于消费时积压，延迟和内存一同增长。按回放约 2 块/秒、假设处理 1 块/秒，每分钟净增约 60 块，仅原始载荷就约 3.6 MB。更大队列只缓冲短峰值。可按业务选有界队列与溢出策略：偏最新告警可淘汰最旧块并记录丢帧，需要连续证据时则要提升吞吐或单独保留原始流。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>调用 <code>stop()</code> 就能排空日志，之后还能直接 <code>start()</code> 吗？</summary><div class="answer"><p><strong>答。</strong>项目先把 <code>running_</code> 设为 false，再停止两个队列并依次 join。队列自身允许取出剩余元素，但业务循环也看 <code>running_</code>，无法保证排空。队列停标志没有复位，空队列上的消费者可能在再次启动后直接退出，且 <code>push()</code> 本身仍允许写入。需要明确关闭是丢弃还是排空，排空时先停生产者，再按依赖顺序关闭并 join 下游，重启前重建或复位队列。硬件读阻塞还需要自己的超时。</p></div></details>
+<details class="q" data-kind="English"><summary><span class="tag a">A</span>What happens if preprocessing is slower than acquisition?</summary><div class="answer"><p>The current FIFO has no size limit, so sustained overload increases memory usage and makes results stale. I would measure queue age and depth, then choose a bounded buffer and a documented overload policy based on whether freshness or uninterrupted evidence matters more.</p></div></details>
+<p class="src">源码定位　<a href="include/common/ConcurrentQueue.hpp">ConcurrentQueue.hpp · push/pop/stop</a>　<a href="src/projects/BearingVibrationProject.cpp">BearingVibrationProject.cpp · 310–405、634–650</a>　<a href="src/frameworks/ExtendedFeaturesFramework.cpp">ExtendedFeaturesFramework.cpp · 831–921</a></p>
+</section>
+
+<section id="alarm" data-topic="现场告警与验证">
+<h2><span class="num">09</span>置信度、延迟与告警语义</h2>
+<p>告警候选满足 <code>class_id != 0 &amp;&amp; conf &gt;= threshold</code>。菜单初值为 0.50 和 0 秒。延迟打开时，第一次异常记 <code>steady_clock</code> 时间，再次处理到符合条件的结果时才判断是否已到延迟。成功推理的正常类或低分会清除计时。未达到告警条件时，现场输出按类别 0 处理，菜单结果标签与一般日志仍保留模型原始分类。</p>
+<details class="q" data-kind="常规"><summary><span class="tag">S</span>报警延迟为什么用 <code>steady_clock</code>？与日志时钟有何区别？</summary><div class="answer"><p><strong>答。</strong>延迟计算要用单调时钟，避免改系统时间造成时长跳变。墙钟用于给日志标出日期与时刻。系统仅在有新推理结果时检查是否跨过延迟，因此实际触发可能比设定时间更晚，还受窗口到达节奏影响。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>一次故障后十秒没新数据，再来一帧故障，能算持续十秒吗？</summary><div class="answer"><p><strong>答。</strong>代码可能用单调时钟计算首个异常至今的经过时长判定已达门限。采集断流、预处理失败或推理失败路径没有在此处重置计时，故障类别改变也不会单独重置。这个实现无法保证观察到连续同类故障。若业务有此要求，维护显式 <em>正常／候选／告警／数据失效</em> 状态，按类别、序号与最大允许帧间隙更新，并验证失败恢复、跨类切换与断流。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag a">A</span>把阈值提高，就一定能改善现场报警吗？</summary><div class="answer"><p><strong>答。</strong>通常会降低触发敏感度，也可能错过低分真故障。把误报、漏报、延迟和错误类别分别统计，再选阈值与延时。分数在阈值边缘来回跳时，可评估进入/退出使用不同阈值或 M-of-N 投票。界面最好同时显示“模型分类”和“告警判定”，避免把抑制中的异常当成正常测量。</p></div></details>
+<p class="src">源码定位　<a href="src/projects/BearingVibrationProject.cpp">BearingVibrationProject.cpp · 472–625</a>　<a href="include/frameworks/ExtendedFeaturesFramework.hpp">ExtendedFeaturesFramework.hpp · 456–479</a></p>
+</section>
+
+<section id="io" data-topic="现场告警与验证">
+<h2><span class="num">10</span>电流环、RS485、OLED 与日志</h2>
+<p>现场输出包含继电器、74HC595 驱动的指示信号、PWM 对应的电流指令和 RS485 串口帧。PWM 在 GPIO18，频率 1 kHz，由拟合系数把目标电流映射为占空比。待机与推理失败目标电流分别为 4 mA 和 5 mA。四类目标上限为 11、14、17、20 mA，运行中按 <code>8 + (上限−8) × conf</code> 计算目标电流。</p>
+<details class="q" data-kind="计算"><summary><span class="tag a">A</span>保持架故障置信度 0.8，已通过告警判定，输出多少？</summary><div class="answer"><p><strong>答。</strong>保持架为类别 2，上限 17 mA。<code>8 + (17−8) × 0.8 = 15.2 mA</code>，这是软件目标电流，实际值要上板测量。不同类别的电流区间会重叠，例如 10 mA 可由多个类别和分数组合得到。需要无歧义读类时，可用 RS485 帧中独立的类别字段。</p></div></details>
+<details class="q" data-kind="专业课"><summary><span class="tag a">A</span>RS485 是 Modbus 吗？<code>tcdrain()</code> 有什么用？</summary><div class="answer"><p><strong>答。</strong>RS485 描述物理层。这里走 <code>/dev/ttyAMA0</code>、9600 波特率的自定义 8 字节帧：<code>55 AA | type | class | conf_H conf_L | mA整数 mA小数</code>。先切 DE 发，等待发送队列排空再切回接收，避免最后字节尚在发送时收回驱动。当前帧无 CRC，写入短帧只返回失败，业务端也未完整传播外设失败。</p></div></details>
+<details class="q" data-kind="常规"><summary><span class="tag a">A</span>日志都在日志线程写吗？OLED 是从哪里刷新的？</summary><div class="answer"><p><strong>答。</strong>普通推理记录经结果队列写系统日志，告警 CSV 由处理线程同步调用写入。实际 OLED 菜单读快照后刷新，日志线程的 <code>display_results()</code> 只输出到控制台。初始化调用旧日志清理，菜单可导出近期记录到 <code>/tmp/log_export</code>。需评估同步 CSV 写盘对处理时延的影响，以及界面显示的电流与实际下发值是否一致。</p></div></details>
+<details class="q" data-kind="压力"><summary><span class="tag a">A</span>收到掉电预警就能保证日志落盘、告警不会再次拉起吗？</summary><div class="answer"><p><strong>答。</strong>代码用原子操作防止回调重复执行，尝试切回待机电流、复位继电器、通知项目停线程，再请求系统关机。回调没有等待业务线程收尾，处理中一块可能仍在写外设或日志。可把输出所有权交给统一状态机，停止接收新任务并规定排空/丢弃策略，按持电时间预算测试掉电、恢复和日志完整性。</p></div></details>
+<p class="src">源码定位　<a href="src/frameworks/ExtendedFeaturesFramework.cpp">ExtendedFeaturesFramework.cpp · 130–184、233–256、368–398、552–681、1435–1464</a>　<a href="src/frameworks/DisplayLoggingFramework.cpp">DisplayLoggingFramework.cpp · 156–197、392–516、625–664</a></p>
+</section>
+
+<section id="debug" data-topic="系统工程">
+<h2><span class="num">11</span>CSV 回放、分段排障与部署</h2>
+<p><code>--simulate</code> 接收 CSV 文件。解析器去掉 UTF-8 BOM，识别制表符或逗号分隔，按表头取 <code>de_normal_X/Y/Z</code>，最多读 5000 个有效行，随后按 5000 行一个块循环回放。打开数据源失败时，代码会关闭模拟标志并尝试真实硬件初始化。主程序的 GPIO 初始化和扩展外设路径仍可能执行。</p>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>回放一直预测正常，说明四个类别都验证了吗？</summary><div class="answer"><p><strong>答。</strong>默认回放固定取正常列，常见情况是同一块反复输入。它能做冒烟测试和可重复比对。验证四类时应通过单独工具提取窗口，或扩展回放接口以选择类别和起始行，并保留真值，按原始采集序列分组，并覆盖不同运行条件。还可加短文件、坏单元格和丢通道测试。当前逐字段调用 <code>stof</code>，坏值可能抛异常，短文件会回绕拼接，可能制造不连续边界。</p></div></details>
+<details class="q" data-kind="场景"><summary><span class="tag">S</span>板子在运行，OLED 没更新，怎么快速定位？</summary><div class="answer"><ol>
+<li>看启动信息和每 5 秒心跳。采集进入而 <code>got_data</code> 不增，先查 ODR、SPI 回读、CSV 加载和采集超时。</li>
+<li><code>got_raw</code> 增长但 <code>cwt_done</code> 不增，查块长度、图像是否空或全零、FFTW 时间和调试写盘。原始队列持续增长时，算消费速率和最老块年龄。</li>
+<li><code>infer_start</code> 与 <code>infer_done</code> 出现长时间缺口，查 <code>Session::Run</code>。两者同增但 <code>output</code> 不增，核对错误码、模型路径和张量。计数说明走到了调用点，无法单独证明外设操作成功。</li>
+<li><code>snapshot</code> 增长后查菜单线程与 OLED/I²C，再查继电器、PWM、串口实际输出和日志权限。先用回放确定软件链路，再接硬件逐段测。</li>
+</ol></div></details>
+<details class="q" data-kind="场景"><summary><span class="tag a">A</span>命令行能运行，systemd 启动却报模型不存在，查什么？</summary><div class="answer"><p><strong>答。</strong>先看 <code>ExecStart</code>、<code>WorkingDirectory</code> 和运行用户。模型路径是 <code>../models/bearing_vibration/bearing_vibration_model.onnx</code>，相对进程工作目录解析。把可执行文件路径写成绝对路径也不会改变这一点。对照安装后的模型位置与运行目录，再查日志目录权限、共享库、串口和 GPIO 访问权限。配置入参 <code>config_path</code> 在业务初始化中被忽略，改 CLI 配置路径无法修复此问题。</p></div></details>
+<p class="callout">在已配齐依赖的树莓派 Linux 环境中，若要复现轴承回放，可从项目根目录在一个新的构建目录编译，再从该目录启动。这里给出的是复现路径，板端构建与实测结果需现场确认。</p>
+<pre>cmake -S . -B build-bearing -DBEARING_VIBRATION_PROJECT=ON
+cmake --build build-bearing -j4
+cd build-bearing
+./multi_project_system --simulate ../datas/BearingVibration/data1_50k.csv</pre>
+<p class="src">源码定位　<a href="src/frameworks/DataAcquisitionFramework.cpp">DataAcquisitionFramework.cpp · 368–591</a>　<a href="src/main.cpp">main.cpp · 479–558</a>　<a href="include/common/ProjectDefines.hpp">ProjectDefines.hpp · 320</a>　<a href="scripts/multi_project.service.in">systemd 模板</a>　<a href="CMakeLists.txt">CMakeLists.txt</a></p>
+</section>
+
+<section id="eval" data-topic="现场告警与验证">
+<h2><span class="num">12</span>怎么证明系统有效</h2>
+<div class="table-wrap"><table><thead><tr><th>验证层级</th><th>做法</th><th>能回答的问题</th></tr></thead><tbody>
+<tr><td>采集正确性</td><td>用已知频率激励，测 ODR/DCLK、有效帧率、三轴对齐、掉线超时和饱和。</td><td>软件拿到的样本是否能代表真实信号？</td></tr>
+<tr><td>预处理与推理对齐</td><td>固定一份输入，保存阶段输出，按数组误差、像素差、四类得分与 argmax 对照。若能拿到浮点基线，再比较量化前后。</td><td>问题来自部署差异、模型量化，还是数据本身？</td></tr>
+<tr><td>分类泛化</td><td>按轴承、采集运行或工况分组，再切窗；按类看混淆矩阵、召回率与 macro-F1，单列留出转速与负载。</td><td>模型能否识别没见过的机器或工况？</td></tr>
+<tr><td>端到端告警</td><td>从有真值的故障事件开始计时，统计漏报、每小时误报、事件检测时延和外设下发成功率。</td><td>模型分数经过阈值、延迟与外设后，现场告警是否有效？</td></tr>
+</tbody></table></div>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>从同一段波形切出很多重叠窗口，随机划分后准确率很高，可信么？</summary><div class="answer"><p><strong>答。</strong>相邻窗口共享样本，即使不重叠，也可能共享转速、负载和设备纹理。随机按窗口划分容易产生泄漏。先按采集运行、设备或工况分组，再切窗。归一化统计量和量化校准只从训练侧取，阈值在验证集选，最终测试集只用于报告结果。至少展示每类召回率及其样本量。</p></div></details>
+<details class="q" data-kind="场景"><summary><span class="tag">S</span>要降低 P95 延迟，你先优化模型还是 CWT？</summary><div class="answer"><p><strong>答。</strong>先测端到端并分段打点：首样本/批次结束、入队/出队、CWT 完成、融合完成、ORT Run 完成、外设实际动作。当前 <code>inference_time_us</code> 包含 AI 框架内部图像处理、ORT 和后处理，排除了前面的 CWT 与排队。按 P50/P95、最大积压、长时间 CPU/RSS 判断瓶颈。CWT 慢时优先验证 FFTW plan、核频谱和工作区复用，以及关闭每窗写 PNG 的收益。若 ORT 慢，再查 EP 分配与线程竞争。</p></div></details>
+<details class="q" data-kind="场景"><summary><span class="tag a">A</span>怎么做消融，证明提升来自三轴融合或增强？</summary><div class="answer"><p><strong>答。</strong>用同一组分组划分与训练预算，对比单轴、三轴平均、CCWF，进一步逐项去掉预加重、局部增强等。每种预处理用匹配的模型训练和验证，避免把输入分布失配误当成算法收益。对已有模型再做推理时扰动作为鲁棒性实验。报告故障类别的召回、误报与前处理成本，特别看低信噪比与跨转速场景。</p></div></details>
+<details class="q" data-kind="English"><summary><span class="tag a">A</span>How would you validate this system on an unseen machine?</summary><div class="answer"><p>I would split by machine or recording run before making windows, then report per-class recall and event-level false alarms. On the target device, I would also measure missed samples and latency from acquisition to alarm. These checks separate generalization from deployment errors.</p></div></details>
+<p class="src">计时位置　<a href="src/frameworks/AIModelFramework.cpp">AIModelFramework.cpp · 134–313</a>　<a href="src/frameworks/DataProcessingFramework.cpp">DataProcessingFramework.cpp · 341–386、645–802</a></p>
+</section>
+
+<section id="claims" data-topic="系统工程">
+<h2><span class="num">13</span>高危表述与个人贡献</h2>
+<div class="table-wrap"><table><thead><tr><th>容易被追问的说法</th><th>面试中可采用的表述</th></tr></thead><tbody>
+<tr><td>“系统稳定以 50 kHz 实时监测。”</td><td>“代码标称 50 kHz，每块 5000 点。有效采样率、漏帧和端到端时延需要通过逻辑分析和链路打点确认。”</td></tr>
+<tr><td>“FFT 得到三张频谱，然后用 AI。”</td><td>“FFT 加速 CWT 的卷积，每个轴得到时间–尺度图，再按局部相关性做三轴融合。”</td></tr>
+<tr><td>“模型全程 INT8，走 NPU 加速。”</td><td>“ONNX 有 Q/DQ，外部 I/O 是 FP32；运行时尝试 CPU 上的 XNNPACK。具体内核可通过 profiling 确认。”</td></tr>
+<tr><td>“模型有 99.6% 的准确率。”</td><td>“这是可能的单窗口最高分，量化步长是 1/256。准确率应从独立有标签测试集算出。”</td></tr>
+<tr><td>“支持热更新配置、自动校准、寿命预测。”</td><td>“主链完成窗口级分类和规则告警。菜单可调阈值与告警延迟。其余接口与配置要核对是否有实现且被调用。”</td></tr>
+<tr><td>“三线程可以保证每次关机排空。”</td><td>“当前流程会置停止位、唤醒消费者并调用 join 等待。ODR 无边沿时可能卡住，队列排空也需单独设计。”</td></tr>
+</tbody></table></div>
+<h3>把“项目做了什么”改写成“我具体做了什么”</h3>
+<p>只选自己确实负责过的一条线，按下面五句练习。能复述实现后，再补上自己的证据。</p>
+<ol>
+<li>我负责 <strong>［具体模块、函数或实验］</strong>，输入是 <strong>［数据/形状/接口］</strong>，交付是 <strong>［输出/现场行为］</strong>。</li>
+<li>当时遇到 <strong>［能复现的问题］</strong>，例如同窗融合图或输出分数出现差异。</li>
+<li>我用 <strong>［波形、日志、逐级中间结果或 profiler］</strong> 把问题定位到 <strong>［阶段］</strong>。</li>
+<li>我改了 <strong>［实际动作］</strong>，权衡了 <strong>［实时性、正确性或资源约束］</strong>。</li>
+<li>我用 <strong>［真实对照与结果］</strong> 复核。缺实测指标时，交代已验证到哪一步，再给出测量方法。</li>
+</ol>
+<details class="q" data-kind="压力"><summary><span class="tag">S</span>这个项目里，哪一项是你独立完成的？如何证明？</summary><div class="answer"><p><strong>练法。</strong>从自己做过的工作里挑一个小问题。比如做过 C++ 预处理对齐，就准备同一 CSV 窗口的 Python/C++ 中间产物、首次偏差位置与修正前后结果。若负责采集，准备 ODR/DCLK 波形和故障复现。面试官继续追问时，能指到具体参数、代码路径和一个失败案例。</p></div></details>
+</section>
+
+<section id="quiz">
+<h2><span class="num">14</span>随机模拟面试</h2>
+<p>先口答 30–60 秒，再展开答案。压力题可按“当前行为 → 风险条件 → 怎么验证或修复”的顺序回答。</p>
+<div class="controls">
+<label for="topic">模块<select id="topic"><option value="">全部模块</option></select></label>
+<label for="kind">问法<select id="kind"><option value="">全部问法</option></select></label>
+<button type="button" class="primary" id="draw">随机下一题</button>
+<button type="button" id="reveal" aria-expanded="false" aria-controls="quiz-answer">显示参考答案</button>
+</div>
+<div id="quiz-card">
+<div aria-live="polite"><div id="quiz-meta"></div><h3 id="quiz-question">选择模块后开始抽题</h3></div>
+<div id="quiz-answer" hidden></div>
+</div>
+<noscript><p>脚本已关闭。每章题目仍可手动展开查看答案。</p></noscript>
+</section>
+
+<section id="checklist">
+<h2><span class="num">15</span>面试前最终自检清单</h2>
+<ul class="checklist">
+<li><label><input type="checkbox">90 秒讲完五层职责、三个业务线程、四个分类标签。</label></li>
+<li><label><input type="checkbox">能画 ODR、DCLK 和三根 DOUT 的一帧，手算 24 位补码、1.2 MHz、100 ms 和 60 kB。</label></li>
+<li><label><input type="checkbox">能从预加重讲到 128 尺度、FFT 线性卷积、<code>abs(Re)</code>、灰度归一化和 8×8 NCC 权重。</label></li>
+<li><label><input type="checkbox">记得输入形状与归一化，能解释 FP32 外部 I/O、内部 Q/DQ、XNNPACK 和 255/256。</label></li>
+<li><label><input type="checkbox">能说明无界队列、忙等和静态告警计时各在什么条件下出问题。</label></li>
+<li><label><input type="checkbox">能解释 4–20 mA 的目标值映射、RS485 帧、日志与 OLED 的真实调用路径。</label></li>
+<li><label><input type="checkbox">准备一份自己做过的复现、测量或排障记录，并能说明它的验证边界。</label></li>
+</ul>
+</section>
+<footer>资料范围为当前工作区中的轴承振动源码、随附 ONNX、CSV 和配置。硬件性能与模型效果需以实测记录为准。</footer>
+</main>
+</div>
+<script>
+(() => {
+  const topic = document.getElementById('topic');
+  const kind = document.getElementById('kind');
+  const title = document.getElementById('quiz-question');
+  const meta = document.getElementById('quiz-meta');
+  const answer = document.getElementById('quiz-answer');
+  const reveal = document.getElementById('reveal');
+  const draw = document.getElementById('draw');
+  const questions = Array.from(document.querySelectorAll('details.q'), element => {
+    const summary = element.querySelector('summary').cloneNode(true);
+    const level = summary.querySelector('.tag');
+    const rank = level.textContent;
+    level.remove();
+    return {
+      topic: element.closest('section').dataset.topic,
+      kind: element.dataset.kind,
+      rank,
+      prompt: summary.textContent.trim(),
+      answer: element.querySelector('.answer')
+    };
+  });
+
+  for (const name of new Set(questions.map(question => question.topic))) topic.add(new Option(name, name));
+  for (const name of ['常规', '专业课', '计算', '压力', '场景', 'English']) kind.add(new Option(name, name));
+
+  let pool = [];
+  let remaining = [];
+  let current = null;
+
+  function showAnswer(show) {
+    answer.hidden = !show;
+    reveal.setAttribute('aria-expanded', String(show));
+    reveal.textContent = show ? '隐藏参考答案' : '显示参考答案';
+  }
+
+  function next() {
+    showAnswer(false);
+    reveal.disabled = pool.length === 0;
+    draw.disabled = pool.length === 0;
+    if (!pool.length) {
+      current = null;
+      answer.replaceChildren();
+      meta.textContent = '0 道题';
+      title.textContent = '当前组合没有题目，请调整筛选。';
+      return;
+    }
+    if (!remaining.length) remaining = pool.slice();
+    const available = remaining.filter(question => question !== current);
+    const choices = available.length ? available : remaining;
+    current = choices[Math.floor(Math.random() * choices.length)];
+    remaining = remaining.filter(question => question !== current);
+    meta.textContent = [current.topic, current.kind, current.rank + ' 级', '题库 ' + pool.length + ' 道'].join(' · ');
+    title.textContent = current.prompt;
+    const content = current.answer.cloneNode(true);
+    answer.replaceChildren(...content.childNodes);
+  }
+
+  function applyFilters() {
+    pool = questions.filter(question =>
+      (!topic.value || question.topic === topic.value) &&
+      (!kind.value || question.kind === kind.value));
+    remaining = pool.slice();
+    next();
+  }
+
+  topic.addEventListener('change', applyFilters);
+  kind.addEventListener('change', applyFilters);
+  draw.addEventListener('click', next);
+  reveal.addEventListener('click', () => showAnswer(answer.hidden));
+  applyFilters();
+
+  let closedBeforePrint = [];
+  window.addEventListener('beforeprint', () => {
+    closedBeforePrint = Array.from(document.querySelectorAll('details.q:not([open])'));
+    closedBeforePrint.forEach(question => { question.open = true; });
+  });
+  window.addEventListener('afterprint', () => {
+    closedBeforePrint.forEach(question => { question.open = false; });
+    closedBeforePrint = [];
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[Unit]
+Description=Multi-Project Detection System
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/multi_project_system
+ExecStart=/usr/bin/multi_project_system --mode normal
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

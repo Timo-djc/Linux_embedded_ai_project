@@ -1,0 +1,4 @@
+--left   datas/FireDetection/fire_images/left/left_1005.jpg
+--center datas/FireDetection/fire_images/center/center_1005.jpg
+--right  datas/FireDetection/fire_images/right/right_1005.jpg
+category fire

@@ -1,0 +1,7 @@
+/home/pi/multi_project_system/build/CMakeFiles/multi_project_system.dir
+/home/pi/multi_project_system/build/CMakeFiles/edit_cache.dir
+/home/pi/multi_project_system/build/CMakeFiles/rebuild_cache.dir
+/home/pi/multi_project_system/build/CMakeFiles/list_install_components.dir
+/home/pi/multi_project_system/build/CMakeFiles/install.dir
+/home/pi/multi_project_system/build/CMakeFiles/install/local.dir
+/home/pi/multi_project_system/build/CMakeFiles/install/strip.dir

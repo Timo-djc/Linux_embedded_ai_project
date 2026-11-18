@@ -1,0 +1,50 @@
+[
+{
+  "directory": "/home/pi/multi_project_system/build",
+  "command": "/usr/local/gcc-11/bin/c++ -DFIRE_DETECTION_PROJECT -I/home/pi/multi_project_system/include -I/home/pi/multi_project_system/include/common -I/home/pi/multi_project_system/include/common/oled -I/home/pi/multi_project_system/include/frameworks -I/home/pi/multi_project_system/include/projects -I/home/pi/multi_project_system/src/common/oled/u8g2/csrc -I/home/pi/multi_project_system/src/common/oled/u8g2/sys/linux-i2c/common -isystem /usr/include/opencv4 -isystem /usr/local/include/onnxruntime -g -std=gnu++17 -Wall -Wextra -O2 -march=native -o CMakeFiles/multi_project_system.dir/src/main.cpp.o -c /home/pi/multi_project_system/src/main.cpp",
+  "file": "/home/pi/multi_project_system/src/main.cpp",
+  "output": "CMakeFiles/multi_project_system.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/pi/multi_project_system/build",
+  "command": "/usr/local/gcc-11/bin/c++ -DFIRE_DETECTION_PROJECT -I/home/pi/multi_project_system/include -I/home/pi/multi_project_system/include/common -I/home/pi/multi_project_system/include/common/oled -I/home/pi/multi_project_system/include/frameworks -I/home/pi/multi_project_system/include/projects -I/home/pi/multi_project_system/src/common/oled/u8g2/csrc -I/home/pi/multi_project_system/src/common/oled/u8g2/sys/linux-i2c/common -isystem /usr/include/opencv4 -isystem /usr/local/include/onnxruntime -g -std=gnu++17 -Wall -Wextra -O2 -march=native -o CMakeFiles/multi_project_system.dir/src/common/oled/oled.cpp.o -c /home/pi/multi_project_system/src/common/oled/oled.cpp",
+  "file": "/home/pi/multi_project_system/src/common/oled/oled.cpp",
+  "output": "CMakeFiles/multi_project_system.dir/src/common/oled/oled.cpp.o"
+},
+{
+  "directory": "/home/pi/multi_project_system/build",
+  "command": "/usr/local/gcc-11/bin/c++ -DFIRE_DETECTION_PROJECT -I/home/pi/multi_project_system/include -I/home/pi/multi_project_system/include/common -I/home/pi/multi_project_system/include/common/oled -I/home/pi/multi_project_system/include/frameworks -I/home/pi/multi_project_system/include/projects -I/home/pi/multi_project_system/src/common/oled/u8g2/csrc -I/home/pi/multi_project_system/src/common/oled/u8g2/sys/linux-i2c/common -isystem /usr/include/opencv4 -isystem /usr/local/include/onnxruntime -g -std=gnu++17 -Wall -Wextra -O2 -march=native -o CMakeFiles/multi_project_system.dir/src/frameworks/AIModelFramework.cpp.o -c /home/pi/multi_project_system/src/frameworks/AIModelFramework.cpp",
+  "file": "/home/pi/multi_project_system/src/frameworks/AIModelFramework.cpp",
+  "output": "CMakeFiles/multi_project_system.dir/src/frameworks/AIModelFramework.cpp.o"
+},
+{
+  "directory": "/home/pi/multi_project_system/build",
+  "command": "/usr/local/gcc-11/bin/c++ -DFIRE_DETECTION_PROJECT -I/home/pi/multi_project_system/include -I/home/pi/multi_project_system/include/common -I/home/pi/multi_project_system/include/common/oled -I/home/pi/multi_project_system/include/frameworks -I/home/pi/multi_project_system/include/projects -I/home/pi/multi_project_system/src/common/oled/u8g2/csrc -I/home/pi/multi_project_system/src/common/oled/u8g2/sys/linux-i2c/common -isystem /usr/include/opencv4 -isystem /usr/local/include/onnxruntime -g -std=gnu++17 -Wall -Wextra -O2 -march=native -o CMakeFiles/multi_project_system.dir/src/frameworks/DataAcquisitionFramework.cpp.o -c /home/pi/multi_project_system/src/frameworks/DataAcquisitionFramework.cpp",
+  "file": "/home/pi/multi_project_system/src/frameworks/DataAcquisitionFramework.cpp",
+  "output": "CMakeFiles/multi_project_system.dir/src/frameworks/DataAcquisitionFramework.cpp.o"
+},
+{
+  "directory": "/home/pi/multi_project_system/build",
+  "command": "/usr/local/gcc-11/bin/c++ -DFIRE_DETECTION_PROJECT -I/home/pi/multi_project_system/include -I/home/pi/multi_project_system/include/common -I/home/pi/multi_project_system/include/common/oled -I/home/pi/multi_project_system/include/frameworks -I/home/pi/multi_project_system/include/projects -I/home/pi/multi_project_system/src/common/oled/u8g2/csrc -I/home/pi/multi_project_system/src/common/oled/u8g2/sys/linux-i2c/common -isystem /usr/include/opencv4 -isystem /usr/local/include/onnxruntime -g -std=gnu++17 -Wall -Wextra -O2 -march=native -o CMakeFiles/multi_project_system.dir/src/frameworks/DataProcessingFramework.cpp.o -c /home/pi/multi_project_system/src/frameworks/DataProcessingFramework.cpp",
+  "file": "/home/pi/multi_project_system/src/frameworks/DataProcessingFramework.cpp",
+  "output": "CMakeFiles/multi_project_system.dir/src/frameworks/DataProcessingFramework.cpp.o"
+},
+{
+  "directory": "/home/pi/multi_project_system/build",
+  "command": "/usr/local/gcc-11/bin/c++ -DFIRE_DETECTION_PROJECT -I/home/pi/multi_project_system/include -I/home/pi/multi_project_system/include/common -I/home/pi/multi_project_system/include/common/oled -I/home/pi/multi_project_system/include/frameworks -I/home/pi/multi_project_system/include/projects -I/home/pi/multi_project_system/src/common/oled/u8g2/csrc -I/home/pi/multi_project_system/src/common/oled/u8g2/sys/linux-i2c/common -isystem /usr/include/opencv4 -isystem /usr/local/include/onnxruntime -g -std=gnu++17 -Wall -Wextra -O2 -march=native -o CMakeFiles/multi_project_system.dir/src/frameworks/DisplayLoggingFramework.cpp.o -c /home/pi/multi_project_system/src/frameworks/DisplayLoggingFramework.cpp",
+  "file": "/home/pi/multi_project_system/src/frameworks/DisplayLoggingFramework.cpp",
+  "output": "CMakeFiles/multi_project_system.dir/src/frameworks/DisplayLoggingFramework.cpp.o"
+},
+{
+  "directory": "/home/pi/multi_project_system/build",
+  "command": "/usr/local/gcc-11/bin/c++ -DFIRE_DETECTION_PROJECT -I/home/pi/multi_project_system/include -I/home/pi/multi_project_system/include/common -I/home/pi/multi_project_system/include/common/oled -I/home/pi/multi_project_system/include/frameworks -I/home/pi/multi_project_system/include/projects -I/home/pi/multi_project_system/src/common/oled/u8g2/csrc -I/home/pi/multi_project_system/src/common/oled/u8g2/sys/linux-i2c/common -isystem /usr/include/opencv4 -isystem /usr/local/include/onnxruntime -g -std=gnu++17 -Wall -Wextra -O2 -march=native -o CMakeFiles/multi_project_system.dir/src/frameworks/ExtendedFeaturesFramework.cpp.o -c /home/pi/multi_project_system/src/frameworks/ExtendedFeaturesFramework.cpp",
+  "file": "/home/pi/multi_project_system/src/frameworks/ExtendedFeaturesFramework.cpp",
+  "output": "CMakeFiles/multi_project_system.dir/src/frameworks/ExtendedFeaturesFramework.cpp.o"
+},
+{
+  "directory": "/home/pi/multi_project_system/build",
+  "command": "/usr/local/gcc-11/bin/c++ -DFIRE_DETECTION_PROJECT -I/home/pi/multi_project_system/include -I/home/pi/multi_project_system/include/common -I/home/pi/multi_project_system/include/common/oled -I/home/pi/multi_project_system/include/frameworks -I/home/pi/multi_project_system/include/projects -I/home/pi/multi_project_system/src/common/oled/u8g2/csrc -I/home/pi/multi_project_system/src/common/oled/u8g2/sys/linux-i2c/common -isystem /usr/include/opencv4 -isystem /usr/local/include/onnxruntime -g -std=gnu++17 -Wall -Wextra -O2 -march=native -o CMakeFiles/multi_project_system.dir/src/projects/FireDetectionProject.cpp.o -c /home/pi/multi_project_system/src/projects/FireDetectionProject.cpp",
+  "file": "/home/pi/multi_project_system/src/projects/FireDetectionProject.cpp",
+  "output": "CMakeFiles/multi_project_system.dir/src/projects/FireDetectionProject.cpp.o"
+}
+]
